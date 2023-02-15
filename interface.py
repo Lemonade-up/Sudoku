@@ -1,5 +1,5 @@
 import pygame
-from sudoku import solve, valid
+from sudoku import solve, valid, find_empty
 import time
 pygame.font.init()
 
@@ -54,10 +54,14 @@ class Grid:
                 self.update_model()
 
     def finish(self):
-        for row in range(len(self.cubes)):
-            for column in range(len(self.cubes)):
-                
-                self.update_model()
+        self.update_model()
+        find = find_empty(self.model)
+        if not find:
+            return True
+        else:
+            row, col = find
+        
+
 
     def sketch(self, value):
         row, column = self.selected
