@@ -33,5 +33,12 @@ def valid(board, number, position):
     for i in range(len(board[0])):
         if board[position[0]][i] == number and position[1] != i:
             return False
-        
+    
+    #Check column
+    for i in range(len(board)):
+        if board[i][position[1]] == number and position[0] != i:
+            return False
+
+    #Check box
+    
         
