@@ -82,6 +82,13 @@ class Grid:
         else:
             return None
 
+    def is_finished(self):
+        for i in range(self.rows):
+            for j in range(self.columns):
+                if self.cubes[i][j] == 0:
+                    return False
+        return True
+
 class Cube:
     rows = 9
     columns = 9
