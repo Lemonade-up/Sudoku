@@ -9,3 +9,9 @@ board = [
     [1,2,0,0,0,7,4,0,0],
     [0,4,9,2,0,6,0,0,7]
 ]
+
+def print_board(board):
+    for i in range(len(board)):
+        if i % 3 and i != 0:
+            print("- - - - - - - - - - - - - - - - - -")
+    
