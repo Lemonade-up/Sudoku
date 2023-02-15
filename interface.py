@@ -60,7 +60,11 @@ class Grid:
             for j in range(self.columns):
                 self.cubes[i][j].draw(win)
 
-    
+    def select(self, row, column):
+        for i in range(self.rows):
+            for j in range(self.columns):
+                self.cubes[i][j].selected = False
+
 class Cube:
     rows = 9
     columns = 9
