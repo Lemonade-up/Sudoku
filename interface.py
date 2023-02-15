@@ -28,7 +28,15 @@ class Grid:
     def update_model(self):
         self.model = [[self.cubes[i][j].value for j in range(self.columns)] for i in range(self.rows)]
 
-    
+    def place(self, value):
+        row, column = self.selected
+        if self.cubes[row][column].value == 0:
+            self.cubes[row][column].set(value)
+            self.update_model()
+
+            if valid(self.model, value, (row, column)) and solve(self.model):
+                return True
+
 
 class Cube:
     rows = 9
