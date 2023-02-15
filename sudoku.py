@@ -57,3 +57,7 @@ def solve(board):
         return True
     else:
         row, col = find
+
+    for i in range(1,10):
+        if valid(board, i, (row, col)):
+            board[row][col] = i
