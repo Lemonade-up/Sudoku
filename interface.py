@@ -196,6 +196,7 @@ def format_time(secs):
     return tformat
 
 def main():
+    print("Controls: Backspace - Remove, Escape - Remove All, Tab - Reset Time, LShift - Solve Puzzle")
     win = pygame.display.set_mode((540,620))
     pygame.display.set_caption("Sudoku")
     board = Grid(9, 9, 540, 540, win)
