@@ -42,6 +42,13 @@ class Grid:
                 self.update_model()
                 return False
 
+    def remove(self):
+        row, col = self.selected
+        self.cubes[row][col].set(0)
+        self.update_model()
+
+    
+
     def sketch(self, value):
         row, column = self.selected
         self.cubes[row][column].set_temp(value)
@@ -171,6 +178,10 @@ def main():
                     key = 8
                 if event.key == pygame.K_9:
                     key = 9
+                if event.key == pygame.K_BACKSPACE:
+                    board.remove()
+                if event.key == pygame.K_ESCAPE:
+                    board.remove()
                 if event.key == pygame.K_DELETE:
                     board.clear()
                     key = None
@@ -178,13 +189,9 @@ def main():
                     i, j = board.selected
                     if board.cubes[i][j].temp != 0:
                         if board.place(board.cubes[i][j].temp):
-                            font = pygame.font.SysFont("comicsans", 40)
-                            text = font.render("Success", 3, (0, 0, 0))
-                            win.blit(text, (540 - 160, 560))
+                            print("Correct")
                         else:
-                            font = pygame.font.SysFont("comicsans", 40)
-                            text = font.render("Wrong", 3, (0, 0, 0))
-                            win.blit(text, (400, 560))
+                            print("Wrong")
                         key = None
 
                         if board.is_finished():
