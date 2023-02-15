@@ -16,4 +16,11 @@ class Grid:
         [0,4,9,2,0,6,0,0,7]
     ]
 
-    
+    def __init__(self, rows, columns, width, height):
+        self.rows = rows
+        self.columns = columns
+        self.width = width
+        self.height = height
+        self.model = None
+        self.selected = None
+        self.cubes = [[Cube(self.board[i][j], i, j, width, height) for j in range(columns)] for i in range(rows)]
