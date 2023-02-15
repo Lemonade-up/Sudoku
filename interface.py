@@ -36,7 +36,11 @@ class Grid:
 
             if valid(self.model, value, (row, column)) and solve(self.model):
                 return True
-
+            else:
+                self.cubes[row][column].set(0)
+                self.cubes[row][column].set_temp(0)
+                self.update_model()
+                return False
 
 class Cube:
     rows = 9
