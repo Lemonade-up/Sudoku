@@ -125,22 +125,16 @@ class Cube:
     def set_temp(self, value):
         self.temp = value
 
-def redraw_window(win, board, time, strikes):
+def redraw_window(win, board, time):
     win.fill((255, 255, 255))
-
     font = pygame.font.SysFont("comicsans", 40)
     text = font.render("Time:" + format_time(time), 1, (0, 0, 0))
-    win.blit(text, (540 - 160, 560))
-
-    text = font.render("X" * strikes, 1, (255, 0, 0))
-    win.blit(text, (20, 560))
-
+    win.blit(text, (10, 560))
     board.draw(win)
     
 def format_time(secs):
     sec = secs%60
     minute = secs // 60
-    hour = minute // 60
 
     tformat = " " + str(minute) + " : " + str(sec)
     return tformat
@@ -152,7 +146,6 @@ def main():
     key = None
     run = True
     start = time.time()
-    strikes = 0
     while run:
         play_time = round(time.time() - start)
         
@@ -185,10 +178,13 @@ def main():
                     i, j = board.selected
                     if board.cubes[i][j].temp != 0:
                         if board.place(board.cubes[i][j].temp):
-                            print("Success")
+                            font = pygame.font.SysFont("comicsans", 40)
+                            text = font.render("Success", 1, (0, 0, 0))
+                            win.blit(text, (540 - 160, 560))
                         else:
-                            print("Wrong")
-                            strikes += 1
+                            font = pygame.font.SysFont("comicsans", 40)
+                            text = font.render("Wrong", 1, (0, 0, 0))
+                            win.blit(text, (400, 560))
                         key = None
 
                         if board.is_finished():
@@ -205,7 +201,7 @@ def main():
         if board.selected and key != None:
             board.sketch(key)
 
-        redraw_window(win, board, play_time, strikes)
+        redraw_window(win, board, play_time)
         pygame.display.update()
 
 main()
