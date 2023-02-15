@@ -56,6 +56,11 @@ class Grid:
             pygame.draw.line(win, (0, 0, 0), (0, i*space), (self.width, i * space), thickness)
             pygame.draw.line(win, (0, 0, 0), (i*space, 0), (i * space, self.height), thickness)
 
+        for i in range(self.rows):
+            for j in range(self.columns):
+                self.cubes[i][j].draw(win)
+
+    
 class Cube:
     rows = 9
     columns = 9
