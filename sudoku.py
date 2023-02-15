@@ -52,6 +52,7 @@ def valid(board, number, position):
     return True
 
 def solve(board):
+    print_board(board)
     find = find_empty(board)
     if not find:
         return True
@@ -61,3 +62,12 @@ def solve(board):
     for i in range(1,10):
         if valid(board, i, (row, col)):
             board[row][col] = i
+
+            if solve(board):
+                return True
+            
+            board[row][col] = 0
+
+    return False
+
+solve(board)
