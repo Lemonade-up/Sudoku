@@ -133,6 +133,15 @@ def redraw_window(win, board, time, strikes):
     
     text = font.render("X" * strikes, 1, (255, 0, 0))
     win.blit(text, (20, 560))
-    
+
     board.draw(win)
     
+def format_time(secs):
+    sec = secs%60
+    minute = secs // 60
+    hour = minute // 60
+
+    tformat = " " + str(hour) + ":" + str(minute) + " : " + str(sec)
+    return tformat
+
+def main():
