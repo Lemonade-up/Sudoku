@@ -25,7 +25,11 @@ class Grid:
         self.selected = None
         self.cubes = [[Cube(self.board[i][j], i, j, width, height) for j in range(columns)] for i in range(rows)]
 
+    def update_model(self):
+        self.model = [[self.cubes[i][j].value for j in range(self.columns)] for i in range(self.rows)]
+
     
+
 class Cube:
     rows = 9
     columns = 9
