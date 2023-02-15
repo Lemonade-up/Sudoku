@@ -85,7 +85,7 @@ class Grid:
     def is_finished(self):
         for i in range(self.rows):
             for j in range(self.columns):
-                if self.cubes[i][j] == 0:
+                if self.cubes[i][j].value == 0:
                     return False
         return True
 
@@ -130,7 +130,8 @@ def redraw_window(win, board, time, strikes):
 
     font = pygame.font.SysFont("comicsans", 40)
     text = font.render("Time:" + format_time(time), 1, (0, 0, 0))
-    
+    win.blit(text, (540 - 160, 560))
+
     text = font.render("X" * strikes, 1, (255, 0, 0))
     win.blit(text, (20, 560))
 
@@ -141,11 +142,11 @@ def format_time(secs):
     minute = secs // 60
     hour = minute // 60
 
-    tformat = " " + str(hour) + ":" + str(minute) + " : " + str(sec)
+    tformat = " " + str(minute) + " : " + str(sec)
     return tformat
 
 def main():
-    win = pygame.display.set_mode((540,600))
+    win = pygame.display.set_mode((540,620))
     pygame.display.set_caption("Sudoku")
     board = Grid(9, 9, 540, 540)
     key = None
@@ -182,3 +183,30 @@ def main():
                     key = None
                 if event.key == pygame.K_RETURN:
                     i, j = board.selected
+                    if board.cubes[i][j].temp != 0:
+                        if board.place(board.cubes[i][j].temp):
+                            print("Success")
+                        else:
+                            print("Wrong")
+                            strikes += 1
+                        key = None
+
+                        if board.is_finished():
+                            print("Game Over")
+                            run = False
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                position = pygame.mouse.get_pos()
+                clicked = board.click(position)
+                if clicked:
+                    board.select(clicked[0], clicked[1])
+                    key = None
+
+        if board.selected and key != None:
+            board.sketch(key)
+
+        redraw_window(win, board, play_time, strikes)
+        pygame.display.update()
+
+main()
+pygame.quit()
