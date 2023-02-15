@@ -145,3 +145,10 @@ def format_time(secs):
     return tformat
 
 def main():
+    win = pygame.display.set_mode((540,600))
+    pygame.display.set_caption("Sudoku")
+    board = Grid(9, 9, 540, 540)
+    key = None
+    run = True
+    start = time.time()
+    strikes = 0
