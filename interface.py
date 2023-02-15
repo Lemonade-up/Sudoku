@@ -24,3 +24,8 @@ class Grid:
         self.model = None
         self.selected = None
         self.cubes = [[Cube(self.board[i][j], i, j, width, height) for j in range(columns)] for i in range(rows)]
+
+    
+class Cube:
+    rows = 9
+    columns = 9
