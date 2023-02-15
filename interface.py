@@ -45,8 +45,16 @@ class Grid:
     def sketch(self, value):
         row, column = self.selected
         self.cubes[row][column].set_temp(value)
-    
-    
+
+    def draw(self, win):
+        space = self.width / 9
+        for i in range(self.rows + 1):
+            if i % 3 == 0 and i !=0:
+                thickness = 4
+            else:
+                thickness = 1
+            pygame.draw.line(win, (0, 0, 0), (0, i*space), (self.width, i * space), thickness)
+            pygame.draw.line(win, (0, 0, 0), (i*space, 0), (i * space, self.height), thickness)
 
 class Cube:
     rows = 9
