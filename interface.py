@@ -50,10 +50,14 @@ class Grid:
     def format(self):
         for row in range(len(self.cubes)):
             for column in range(len(self.cubes)):
-                self.cubes[row][column].set(0)
+                solve(self.cubes)
                 self.update_model()
 
-
+    def finish(self):
+        for row in range(len(self.cubes)):
+            for column in range(len(self.cubes)):
+                
+                self.update_model()
 
     def sketch(self, value):
         row, column = self.selected
@@ -186,6 +190,8 @@ def main():
                     key = 9
                 if event.key == pygame.K_BACKSPACE:
                     board.remove()
+                if event.key == pygame.K_LSHIFT:
+                    board.finish()
                 if event.key == pygame.K_TAB:
                     start = time.time()
                 if event.key == pygame.K_ESCAPE:
