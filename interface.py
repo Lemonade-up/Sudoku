@@ -73,6 +73,15 @@ class Grid:
         if self.cubes[row][column].value == 0:
             self.cubes[row][column].set_temp(0)
 
+    def click(self, position):
+        if position[0] < self.width and position[1] < self.height:
+            space = self.width / 9
+            x = position[0] // space
+            y = position[1] // space
+            return (int(y), int(x))
+        else:
+            return None
+
 class Cube:
     rows = 9
     columns = 9
