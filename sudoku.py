@@ -22,5 +22,16 @@ def print_board(board):
             else:
                 print(str(board[i][j]) + " ", end = "")
 
-print_board(board)
+def find_empty(board):
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if board[i][j] == 0:
+                return (i, j) #row and column
+
+def valid(board, number, position):
+    #Check row
+    for i in range(len(board[0])):
+        if board[position[0]][i] == number and position[1] != i:
+            return False
+        
         
