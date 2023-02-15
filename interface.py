@@ -179,11 +179,11 @@ def main():
                     if board.cubes[i][j].temp != 0:
                         if board.place(board.cubes[i][j].temp):
                             font = pygame.font.SysFont("comicsans", 40)
-                            text = font.render("Success", 1, (0, 0, 0))
+                            text = font.render("Success", 3, (0, 0, 0))
                             win.blit(text, (540 - 160, 560))
                         else:
                             font = pygame.font.SysFont("comicsans", 40)
-                            text = font.render("Wrong", 1, (0, 0, 0))
+                            text = font.render("Wrong", 3, (0, 0, 0))
                             win.blit(text, (400, 560))
                         key = None
 
