@@ -16,7 +16,7 @@ class Grid:
         [0,4,9,2,0,6,0,0,7]
     ]
 
-    def __init__(self, rows, columns, width, height):
+    def __init__(self, rows, columns, width, height, win):
         self.rows = rows
         self.columns = columns
         self.width = width
@@ -24,6 +24,7 @@ class Grid:
         self.model = None
         self.selected = None
         self.cubes = [[Cube(self.board[i][j], i, j, width, height) for j in range(columns)] for i in range(rows)]
+        self.win = win
 
     def update_model(self):
         self.model = [[self.cubes[i][j].value for j in range(self.columns)] for i in range(self.rows)]
@@ -64,7 +65,7 @@ class Grid:
         for i in range(1, 10):
             if valid(self.model, i, (row, column)):
                 self.model[row][column] = i
-                self.model[row][column].set(i)
+                self.cubes[row][column].set(i)
                 self.cubes[row][column].draw_change(self.win, True)
                 self.update_model()
                 pygame.display.update()
@@ -74,7 +75,7 @@ class Grid:
                     return True
                 
                 self.model[0][0] = 0
-                self.model[row][column].set(0)
+                self.cubes[row][column].set(0)
                 self.cubes[row][column].draw_change(self.win, False)
                 self.update_model()
                 pygame.display.update()
@@ -158,6 +159,22 @@ class Cube:
         if self.selected:
             pygame.draw.rect(win, (255, 0, 0), (x, y, space, space), 3)
 
+    def draw_change(self, win, g = True):
+        font = pygame.font.SysFont("comicsans", 40)
+
+        space = self.width / 9
+        x = self.column * space
+        y = self.row * space
+
+        pygame.draw.rect(win, (255, 255, 255), (x, y, space, space), 0)
+
+        text = font.render(str(self.value), 1, (0, 0, 0))
+        win.blit(text, (x + (space / 2 - text.get_width() / 2), y + (space / 2 - text.get_height() / 2)))
+        if g:
+            pygame.draw.rect(win, (0, 255, 0), (x, y, space, space), 3)
+        else:
+            pygame.draw.rect(win, (255, 0, 0), (x, y, space, space), 3)
+
     def set(self, value):
         self.value = value
     
@@ -181,7 +198,7 @@ def format_time(secs):
 def main():
     win = pygame.display.set_mode((540,620))
     pygame.display.set_caption("Sudoku")
-    board = Grid(9, 9, 540, 540)
+    board = Grid(9, 9, 540, 540, win)
     key = None
     run = True
     start = time.time()
