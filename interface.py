@@ -43,11 +43,17 @@ class Grid:
                 return False
 
     def remove(self):
-        row, col = self.selected
-        self.cubes[row][col].set(0)
+        row, column = self.selected
+        self.cubes[row][column].set(0)
         self.update_model()
 
-    
+    def format(self):
+        for row in range(len(self.cubes)):
+            for column in range(len(self.cubes)):
+                self.cubes[row][column].set(0)
+                self.update_model()
+
+
 
     def sketch(self, value):
         row, column = self.selected
@@ -180,8 +186,10 @@ def main():
                     key = 9
                 if event.key == pygame.K_BACKSPACE:
                     board.remove()
+                if event.key == pygame.K_TAB:
+                    start = time.time()
                 if event.key == pygame.K_ESCAPE:
-                    board.remove()
+                    board.format()
                 if event.key == pygame.K_DELETE:
                     board.clear()
                     key = None
