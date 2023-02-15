@@ -131,4 +131,8 @@ def redraw_window(win, board, time, strikes):
     font = pygame.font.SysFont("comicsans", 40)
     text = font.render("Time:" + format_time(time), 1, (0, 0, 0))
     
+    text = font.render("X" * strikes, 1, (255, 0, 0))
+    win.blit(text, (20, 560))
+    
+    board.draw(win)
     
