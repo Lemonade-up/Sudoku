@@ -92,3 +92,14 @@ class Grid:
 class Cube:
     rows = 9
     columns = 9
+
+    def __init__(self, value, row, column, width, height):
+        self.value = value
+        self.temp = 0
+        self.row = row
+        self.column = column
+        self.width = width
+        self.height = height
+        self.selected = False
+
+    
