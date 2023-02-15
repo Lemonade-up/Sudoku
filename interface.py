@@ -50,7 +50,7 @@ class Grid:
     def format(self):
         for row in range(len(self.cubes)):
             for column in range(len(self.cubes)):
-                solve(self.cubes)
+                self.cubes[row][column].set(0)
                 self.update_model()
 
     def finish(self):
@@ -59,9 +59,27 @@ class Grid:
         if not find:
             return True
         else:
-            row, col = find
+            row, column = find
         
+        for i in range(1, 10):
+            if valid(self.model, i, (row, column)):
+                self.model[row][column] = i
+                self.model[row][column].set(i)
+                self.cubes[row][column].draw_change(self.win, True)
+                self.update_model()
+                pygame.display.update()
+                pygame.time.delay(100)
 
+                if self.finish():
+                    return True
+                
+                self.model[0][0] = 0
+                self.model[row][column].set(0)
+                self.cubes[row][column].draw_change(self.win, False)
+                self.update_model()
+                pygame.display.update()
+                pygame.time.delay(100)
+        return False
 
     def sketch(self, value):
         row, column = self.selected
