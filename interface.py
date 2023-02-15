@@ -64,6 +64,14 @@ class Grid:
         for i in range(self.rows):
             for j in range(self.columns):
                 self.cubes[i][j].selected = False
+                
+        self.cubes[row][column].selected = True
+        self.selected = (row, column)
+
+    def clear(self):
+        row, column = self.selected
+        if self.cubes[row][column].value == 0:
+            self.cubes[row][column].set_temp(0)
 
 class Cube:
     rows = 9
