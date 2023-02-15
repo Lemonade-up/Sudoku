@@ -27,6 +27,7 @@ def find_empty(board):
         for j in range(len(board[0])):
             if board[i][j] == 0:
                 return (i, j) #row and column
+    return None
 
 def valid(board, number, position):
     #Check row
@@ -49,3 +50,10 @@ def valid(board, number, position):
                 return False
 
     return True
+
+def solve(board):
+    find = find_empty(board)
+    if not find:
+        return True
+    else:
+        row, col = find
