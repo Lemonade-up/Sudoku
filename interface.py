@@ -125,3 +125,10 @@ class Cube:
     def set_temp(self, value):
         self.temp = value
 
+def redraw_window(win, board, time, strikes):
+    win.fill((255, 255, 255))
+
+    font = pygame.font.SysFont("comicsans", 40)
+    text = font.render("Time:" + format_time(time), 1, (0, 0, 0))
+    
+    
