@@ -269,8 +269,6 @@ def main():
                     key = 8
                 if event.key == pygame.K_9:
                     key = 9
-                if event.key == pygame.K_r:
-                    main()
                 if event.key == pygame.K_BACKSPACE:
                     board.remove()
                 if event.key == pygame.K_LSHIFT:
