@@ -49,9 +49,10 @@ class Grid:
         [0,0,0,4,1,9,0,0,5],
         [0,0,0,0,8,0,0,7,9]
     ]
-    
+
     def __init__(self, rows, columns, width, height, win):
-        self.board = "board" + str(random.randint(1,4))
+        random_No = str(random.randint(1,4))
+        self.board = self.board + random_No
         self.rows = rows
         self.columns = columns
         self.width = width
