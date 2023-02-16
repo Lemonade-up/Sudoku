@@ -1,4 +1,5 @@
 import pygame
+import random
 from sudoku import solve, valid, find_empty
 import time
 pygame.font.init()
@@ -50,6 +51,7 @@ class Grid:
     ]
     
     def __init__(self, rows, columns, width, height, win):
+        self.board = "board" + str(random.randint(1,4))
         self.rows = rows
         self.columns = columns
         self.width = width
@@ -261,6 +263,8 @@ def main():
                     key = 8
                 if event.key == pygame.K_9:
                     key = 9
+                if event.key == pygame.K_r:
+                    main()
                 if event.key == pygame.K_BACKSPACE:
                     board.remove()
                 if event.key == pygame.K_LSHIFT:
